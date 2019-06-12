@@ -37,6 +37,8 @@
     "simple-line-icons": "^2.4.1"
   },
   "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-plugin-react": "^7.13.0",
     "react-scripts": "^3.0.1"
   },
   "scripts": {
