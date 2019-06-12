@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Table } from 'reactstrap';
+import { productService } from '../../services';
 
 const headers = ['Name', 'Image'];
 
@@ -16,16 +17,13 @@ export default class Product extends Component {
   }
 
   componentDidMount() {
-    // Simulator
-    const products = [
-      { id: 1, name: 'Chien', imageUrl: 'chienUrl' },
-      { id: 2, name: 'Truong', imageUrl: 'truongUrl' },
-    ];
-    this.setState({ displayedProducts: products });
+    productService.findAll().then(resp => {
+      const products = resp.data;
+      this.setState({ products });
+    }).catch(err => console.log(err));
   }
 
   render() {
-
     const displayedDatas = this.state.displayedProducts;
     const contentHeader = headers.map(ele => <th key={ele}>{ele}</th>);
     const contentBody = displayedDatas.map(ele => {
@@ -34,17 +32,6 @@ export default class Product extends Component {
           <td key={ele[field]}>{ele[field]}</td>
         );
       });
-
-      const buttons = <td key={ele.id}>
-        <a className="btn btn-success" href="#">
-          <i className="fa fa-edit"></i>
-        </a>
-        <a className="btn btn-danger" href="#">
-          <i className="fa fa-trash-o"></i>
-        </a>
-      </td>;
-
-      contents.push(buttons);
 
       return (
         <tr key={ele.id}>
@@ -58,7 +45,6 @@ export default class Product extends Component {
           <thead>
             <tr>
               {contentHeader}
-              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
