@@ -19,7 +19,9 @@
         "react"
     ],
     "rules": {
-        "camelcase": "warn",
+        "camelcase": "error",
+        "semi": "error",
+        "quotes": ["error", "single"],
         "no-unused-vars": "off"
     }
 }
