@@ -3,7 +3,7 @@ import axios from 'axios';
 export default function (api) {
   return {
     findAll: () => {
-      return axios.get(api);
+      return axios.get(api).then(res => res.data);
     },
     findOneById: (id) => {
       return axios.get(`${api}/${id}`);
@@ -12,7 +12,7 @@ export default function (api) {
       return axios.delete(`${api}/${id}`);
     },
     create: (data) => {
-      return axios.create(api, data);
+      return axios.post(api, data);
     },
     update: (data, id) => {
       return axios.put(`${api}/${id}`, data);

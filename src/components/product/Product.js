@@ -3,8 +3,6 @@ import { Table, Button } from 'reactstrap';
 import { Redirect } from 'react-router-dom';
 import { productService } from '../../services';
 
-const products = [];
-
 const headers = ['Name', 'Image'];
 
 const fields = ['name', 'imageUrl'];
@@ -15,44 +13,38 @@ export default class Product extends Component {
 
     this.state = {
       products: [],
-      displayedProducts: [],
       isAdd: false,
     };
     this.addProduct = this.addProduct.bind(this);
-    this.addProductConfirm = this.addProductConfirm.bind(this);
   }
 
   componentDidMount() {
     productService.findAll().then(resp => {
-      const products = resp.data;
+      const products = resp._embedded.products;
       this.setState({ products });
-    }).catch(err => this.setState({ products }));
+    }).catch(err => console.error(err));
   }
 
   addProduct() {
     this.setState({ isAdd: true });
   }
 
-  addProductConfirm() {
-    this.setState({ isAdd: false });
-  }
-
   render() {
     if (this.state.isAdd) {
-      return <Redirect push to={{ pathname: '/product/shirts/add',
-        state: {addProductConfirm: this.addProductConfirm} }} />;
+      return <Redirect push to={{ pathname: '/product/shirts/add' }} />;
     }
-    const displayedDatas = this.state.displayedProducts;
+    const displayedDatas = this.state.products;
     const contentHeader = headers.map(ele => <th key={ele}>{ele}</th>);
     const contentBody = displayedDatas.map(ele => {
+      const _self = ele._links.self;
       const contents = fields.map(field => {
         return (
-          <td key={ele[field]}>{ele[field]}</td>
+          <td key={`${_self}.${ele[field]}`}>{ele[field]}</td>
         );
       });
 
       return (
-        <tr key={ele.id}>
+        <tr key={_self}>
           {contents}
         </tr>
       );
