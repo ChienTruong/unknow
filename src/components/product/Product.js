@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
-import { Table } from 'reactstrap';
+import { Table, Button } from 'reactstrap';
+import { Redirect } from 'react-router-dom';
 import { productService } from '../../services';
+
+const products = [];
 
 const headers = ['Name', 'Image'];
 
@@ -13,17 +16,32 @@ export default class Product extends Component {
     this.state = {
       products: [],
       displayedProducts: [],
+      isAdd: false,
     };
+    this.addProduct = this.addProduct.bind(this);
+    this.addProductConfirm = this.addProductConfirm.bind(this);
   }
 
   componentDidMount() {
     productService.findAll().then(resp => {
       const products = resp.data;
       this.setState({ products });
-    }).catch(err => console.log(err));
+    }).catch(err => this.setState({ products }));
+  }
+
+  addProduct() {
+    this.setState({ isAdd: true });
+  }
+
+  addProductConfirm() {
+    this.setState({ isAdd: false });
   }
 
   render() {
+    if (this.state.isAdd) {
+      return <Redirect push to={{ pathname: '/product/shirts/add',
+        state: {addProductConfirm: this.addProductConfirm} }} />;
+    }
     const displayedDatas = this.state.displayedProducts;
     const contentHeader = headers.map(ele => <th key={ele}>{ele}</th>);
     const contentBody = displayedDatas.map(ele => {
@@ -41,6 +59,7 @@ export default class Product extends Component {
     });
     return (
       <div>
+        <Button color='primary' onClick={this.addProduct}>Add</Button>
         <Table responsive striped>
           <thead>
             <tr>
