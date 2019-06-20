@@ -1,7 +1,7 @@
 import { AppHeaderDropdown, AppNavbarBrand, AppSidebarToggler } from '@coreui/react';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { DropdownToggle, Nav, DropdownMenu, DropdownItem, Badge} from 'reactstrap';
+import { DropdownToggle, Nav } from 'reactstrap';
 import logo from '../../assets/img/brand/logo.svg';
 import sygnet from '../../assets/img/brand/sygnet.svg';
 

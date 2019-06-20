@@ -3,9 +3,9 @@ import { Table, Button } from 'reactstrap';
 import { Redirect } from 'react-router-dom';
 import { productService } from '../../services';
 
-const headers = ['Name', 'Image'];
+const headers = ['Code', 'Name', 'Image', 'Price'];
 
-const fields = ['name', 'imageUrl'];
+const fields = ['code', 'name', 'imageUrl', 'price'];
 export default class Product extends Component {
 
   constructor(props) {
@@ -20,7 +20,7 @@ export default class Product extends Component {
 
   componentDidMount() {
     productService.findAll().then(resp => {
-      const products = resp._embedded.products;
+      const products = resp.data;
       this.setState({ products });
     }).catch(err => console.error(err));
   }
@@ -29,22 +29,35 @@ export default class Product extends Component {
     this.setState({ isAdd: true });
   }
 
+  isImage(value) {
+    // Temporary implement
+    if (typeof value === 'string'
+      && value.includes('.png')) {
+      return true;
+    }
+    return false;
+  }
+
   render() {
     if (this.state.isAdd) {
       return <Redirect push to={{ pathname: '/product/shirts/add' }} />;
     }
-    const displayedDatas = this.state.products;
+    const displayedDatas = this.state.products || [];
     const contentHeader = headers.map(ele => <th key={ele}>{ele}</th>);
     const contentBody = displayedDatas.map(ele => {
-      const _self = ele._links.self;
+
       const contents = fields.map(field => {
+        let value = ele[field];
+        if (value && this.isImage(value)) {
+          value = <img src={value} className="img-table" alt={value} ></img>;
+        }
         return (
-          <td key={`${_self}.${ele[field]}`}>{ele[field]}</td>
+          <td key={`${ele.id}.${value}`}>{value}</td>
         );
       });
 
       return (
-        <tr key={_self}>
+        <tr key={ele.id}>
           {contents}
         </tr>
       );

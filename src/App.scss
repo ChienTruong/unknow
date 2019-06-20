@@ -9,3 +9,17 @@
 @import '~simple-line-icons/css/simple-line-icons.css';
 // Import Main styles for this application
 @import './scss/style.scss';
+
+.img-table {
+    height: 30px;
+}
+
+.btn-grp {
+    button:not(:last-child) {
+        margin-right: 4px;
+    }
+}
+
+.form-group {
+    margin-bottom: 10px;
+}

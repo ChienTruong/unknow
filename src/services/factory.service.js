@@ -3,7 +3,7 @@ import axios from 'axios';
 export default function (api) {
   return {
     findAll: () => {
-      return axios.get(api).then(res => res.data);
+      return axios.get(api).then(response => response.data);
     },
     findOneById: (id) => {
       return axios.get(`${api}/${id}`);
