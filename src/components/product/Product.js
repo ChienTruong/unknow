@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { Table, Button } from 'reactstrap';
 import { Redirect } from 'react-router-dom';
 import { productService } from '../../services';
+import { connect } from 'react-redux';
 
 const headers = ['Code', 'Name', 'Image', 'Price'];
 
 const fields = ['code', 'name', 'imageUrl', 'price'];
-export default class Product extends Component {
+class Product extends Component {
 
   constructor(props) {
     super(props);
@@ -88,3 +89,14 @@ export default class Product extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  
+});
+
+const mapDispatchToProps = {
+  
+};
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Product);
