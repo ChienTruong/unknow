@@ -14,6 +14,8 @@ export default class Product extends Component {
     this.state = {
       products: [],
       isAdd: false,
+      isEdit: false,
+      idObjEditing: null,
     };
     this.addProduct = this.addProduct.bind(this);
   }
@@ -39,9 +41,16 @@ export default class Product extends Component {
   }
 
   render() {
-    if (this.state.isAdd) {
-      return <Redirect push to={{ pathname: '/product/shirts/add' }} />;
+    if (this.state.isAdd || this.state.isEdit) {
+      // Assemble path
+      let path = '/product/shirts/add';
+      path += this.state.isEdit ? `/${this.state.idObjEditing}` : '';
+      // Assemble object to
+      const to = { pathname: path };
+      // case editing
+      return <Redirect push to={to} />;
     }
+
     const displayedDatas = this.state.products || [];
     const contentHeader = headers.map(ele => <th key={ele}>{ele}</th>);
     const contentBody = displayedDatas.map(ele => {
