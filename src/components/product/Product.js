@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom';
 import { productService } from '../../services';
 import { connect } from 'react-redux';
 
-const headers = ['Code', 'Name', 'Image', 'Price'];
+const headers = ['Image', 'Name', 'Catology', 'Status', 'Date Create'];
 
 const fields = ['code', 'name', 'imageUrl', 'price'];
 class Product extends Component {
@@ -73,29 +73,37 @@ class Product extends Component {
       );
     });
     return (
-      <div>
-        <Button color='primary' onClick={this.addProduct}>Add</Button>
-        <Table responsive striped>
-          <thead>
-            <tr>
-              {contentHeader}
-            </tr>
-          </thead>
-          <tbody>
-            {contentBody}
-          </tbody>
-        </Table>
+      <div className="container">
+        <div className="row margin-top-10">
+          <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <Button color='primary' onClick={this.addProduct}>Add</Button>
+          </div>
+        </div>
+        <div className="row margin-top-10">
+          <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <Table responsive striped>
+              <thead>
+                <tr>
+                  {contentHeader}
+                </tr>
+              </thead>
+              <tbody>
+                {contentBody}
+              </tbody>
+            </Table>
+          </div>
+        </div>
       </div>
     );
   }
 }
 
 const mapStateToProps = (state) => ({
-  
+
 });
 
 const mapDispatchToProps = {
-  
+
 };
 
 
