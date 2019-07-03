@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { Table, Button } from 'reactstrap';
 import { Redirect } from 'react-router-dom';
-import { productService } from '../../services';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import productActions from '../../actions/product.action';
 
-const headers = ['Code', 'Name', 'Image', 'Price'];
+const headers = ['Image', 'Name', 'Catology', 'Status', 'Date Create'];
 
 const fields = ['code', 'name', 'imageUrl', 'price'];
 class Product extends Component {
@@ -13,7 +14,6 @@ class Product extends Component {
     super(props);
 
     this.state = {
-      products: [],
       isAdd: false,
       isEdit: false,
       idObjEditing: null,
@@ -22,10 +22,7 @@ class Product extends Component {
   }
 
   componentDidMount() {
-    productService.findAll().then(resp => {
-      const products = resp.data;
-      this.setState({ products });
-    }).catch(err => console.error(err));
+    this.props.productService.findAll();
   }
 
   addProduct() {
@@ -52,7 +49,7 @@ class Product extends Component {
       return <Redirect push to={to} />;
     }
 
-    const displayedDatas = this.state.products || [];
+    const displayedDatas = this.props.products || [];
     const contentHeader = headers.map(ele => <th key={ele}>{ele}</th>);
     const contentBody = displayedDatas.map(ele => {
 
@@ -73,30 +70,45 @@ class Product extends Component {
       );
     });
     return (
-      <div>
-        <Button color='primary' onClick={this.addProduct}>Add</Button>
-        <Table responsive striped>
-          <thead>
-            <tr>
-              {contentHeader}
-            </tr>
-          </thead>
-          <tbody>
-            {contentBody}
-          </tbody>
-        </Table>
+      <div className="container">
+        <div className="row margin-top-10">
+          <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <Button color='primary' onClick={this.addProduct}>Add</Button>
+          </div>
+        </div>
+        <div className="row margin-top-10">
+          <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <Table responsive striped>
+              <thead>
+                <tr>
+                  {contentHeader}
+                </tr>
+              </thead>
+              <tbody>
+                {contentBody}
+              </tbody>
+            </Table>
+          </div>
+        </div>
       </div>
     );
   }
 }
 
-const mapStateToProps = (state) => ({
-  
-});
-
-const mapDispatchToProps = {
-  
+Product.defaultProps = {
+  products: [],
 };
 
+const mapStateToProps = state => {
+  return {
+    products: state.productReducers.data,
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    productService: bindActionCreators(productActions, dispatch)
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Product);

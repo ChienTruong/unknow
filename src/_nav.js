@@ -12,12 +12,12 @@ export default {
     {
       name: 'Product',
       // url: '/product',
-      icon: 'cui-cloud',
+      icon: 'fa fa-product-hunt',
       children: [
         {
-          name: 'Shirt',
+          name: 'List Product',
           url: '/product/shirts',
-          icon: 'icon-puzzle',
+          icon: 'fa fa-tint',
         },
       ],
     },
@@ -118,11 +118,11 @@ export default {
     //       url: '/base/switches',
     //       icon: 'icon-puzzle',
     //     },
-    //     {
-    //       name: 'Tables',
-    //       url: '/base/tables',
-    //       icon: 'icon-puzzle',
-    //     },
+        {
+          name: 'Tables',
+          url: '/base/tables',
+          icon: 'icon-puzzle',
+        },
     //     {
     //       name: 'Tabs',
     //       url: '/base/tabs',
