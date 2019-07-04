@@ -6,4 +6,4 @@ var  categoryReducer = (state = INITIAL_STATE, action) => {
      return state;
  }
 }
-module.exports = categoryReducer
+export default  categoryReducer
