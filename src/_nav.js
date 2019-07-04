@@ -21,6 +21,18 @@ export default {
         },
       ],
     },
+    {
+      name: 'Category',
+      url: '/category',
+      icon: 'fa fa-product-hunt',
+      children: [
+        {
+          name: 'List Category',
+          url: '/category/category',
+          icon: 'fa fa-tint',
+        },
+      ],
+    },
     // {
     //   title: true,
     //   name: 'Theme',

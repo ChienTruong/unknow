@@ -1,4 +1,5 @@
 import React from 'react';
+import Category from './components/category/category';
 
 // const Breadcrumbs = React.lazy(() => import('./views/Base/Breadcrumbs'));
 // const Cards = React.lazy(() => import('./views/Base/Cards'));
@@ -44,6 +45,7 @@ const routes = [
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
   { path: '/product/shirts', exact: true, name: 'Theme', component: Product },
   { path: '/product/shirts/add', exact: true, name: 'Theme', component: ProductAdd },
+  { path: '/category/category', exact: true, name: 'Theme', component: Category },
   // { path: '/theme/colors', name: 'Colors', component: Colors },
   // { path: '/theme/typography', name: 'Typography', component: Typography },
   // { path: '/base', exact: true, name: 'Base', component: Cards },

@@ -1,15 +1,21 @@
 import React, { Component } from 'react';
+import PostForm from './PostForm';
+import AllPost from './AllPost';
 
 class Category extends Component {
-  render() {
 
+
+render() {
     return (
-      <React.Fragment>
-        {/* <span><a href="https://coreui.io">CoreUI</a> &copy; 2019 creativeLabs.</span> */}
-        <span className="ml-auto">Powered by <a href="https://coreui.io/react">Rio</a></span>
-      </React.Fragment>
+        <div className="App">
+        <div className="navbar">
+          <h2 className="center ">Post It</h2>
+          </div>
+          <PostForm />
+          <AllPost />
+      </div>
     );
-  }
+}
 }
 
 
