@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Table, Button } from 'reactstrap';
 import { Redirect } from 'react-router-dom';
-import { productService } from '../../services';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import productActions from '../../actions/product.action';
 
 const headers = ['Image', 'Name', 'Catology', 'Status', 'Date Create'];
 
@@ -13,7 +14,6 @@ class Product extends Component {
     super(props);
 
     this.state = {
-      products: [],
       isAdd: false,
       isEdit: false,
       idObjEditing: null,
@@ -22,10 +22,7 @@ class Product extends Component {
   }
 
   componentDidMount() {
-    productService.findAll().then(resp => {
-      const products = resp.data;
-      this.setState({ products });
-    }).catch(err => console.error(err));
+    this.props.productService.findAll();
   }
 
   addProduct() {
@@ -52,7 +49,7 @@ class Product extends Component {
       return <Redirect push to={to} />;
     }
 
-    const displayedDatas = this.state.products || [];
+    const displayedDatas = this.props.products || [];
     const contentHeader = headers.map(ele => <th key={ele}>{ele}</th>);
     const contentBody = displayedDatas.map(ele => {
 
@@ -98,13 +95,20 @@ class Product extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-
-});
-
-const mapDispatchToProps = {
-
+Product.defaultProps = {
+  products: [],
 };
 
+const mapStateToProps = state => {
+  return {
+    products: state.productReducers.data,
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    productService: bindActionCreators(productActions, dispatch)
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Product);
