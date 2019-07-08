@@ -8,6 +8,7 @@ export default class ProductAdd extends Component {
     this.state = {};
 
     this.onSave = this.onSave.bind(this);
+    this.onBack = this.onBack.bind(this);
     this.onValueChange = this.onValueChange.bind(this);
     this.onImageChange = this.onImageChange.bind(this);
   }
@@ -35,13 +36,16 @@ export default class ProductAdd extends Component {
   }
 
   onSave() {
-    console.log(this.state);
+    this.props.onAccept(this.state);
+  }
+
+  onBack() {
+    this.props.onBack();
   }
 
   render() {
-    const { goBack } = this.props.history;
     const dataRendered = this.state;
-    const imgSrc = dataRendered.imgSelectedUrl ? dataRendered.imgSelectedUrl : dataRendered.imageUrl || null;
+    const imgSrc = dataRendered.imgSelectedUrl ? dataRendered.imgSelectedUrl : dataRendered.img || null;
     return (
       <div>
         <Form>
@@ -58,37 +62,37 @@ export default class ProductAdd extends Component {
             <FormGroup row>
               <Label sm={2}>Code</Label>
               <Col sm={10}>
-                <Input type="text" name="code" value={dataRendered.code} onChange={this.onValueChange}/>
+                <Input type="text" name="code" value={dataRendered.code || ''} onChange={this.onValueChange}/>
               </Col>
             </FormGroup>
             <FormGroup row>
               <Label sm={2}>Name</Label>
               <Col sm={10}>
-                <Input type="text" name="name" value={dataRendered.name} onChange={this.onValueChange}/>
+                <Input type="text" name="name" value={dataRendered.name || ''} onChange={this.onValueChange}/>
               </Col>
             </FormGroup>
             <FormGroup row>
               <Label sm={2}>Price</Label>
               <Col sm={10}>
-                <Input type="number" name="price" value={dataRendered.price} onChange={this.onValueChange}/>
+                <Input type="number" name="price" value={dataRendered.price || ''} onChange={this.onValueChange}/>
               </Col>
             </FormGroup>
             <FormGroup row>
               <Label sm={2}>Quatity</Label>
               <Col sm={10}>
-                <Input type="number" name="quatity" value={dataRendered.quatity} onChange={this.onValueChange}/>
+                <Input type="number" name="quantity" value={dataRendered.quantity || ''} onChange={this.onValueChange}/>
               </Col>
             </FormGroup>
             <FormGroup row>
               <Label sm={2}>Weight</Label>
               <Col sm={10}>
-                <Input type="number" name="weight" value={dataRendered.weight} onChange={this.onValueChange}/>
+                <Input type="number" name="weight" value={dataRendered.weight || ''} onChange={this.onValueChange}/>
               </Col>
             </FormGroup>
           </Col>
           <div className="btn-grp">
             <Button color="primary" onClick={this.onSave}>Save</Button>
-            <Button color="danger" onClick={goBack}>Cancel</Button>
+            <Button color="danger" onClick={this.onBack}>Back</Button>
           </div>
         </Form>
       </div>

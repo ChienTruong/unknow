@@ -37,14 +37,12 @@ const SimpleLineIcons = React.lazy(() => import('./views/Icons/SimpleLineIcons')
 // const Users = React.lazy(() => import('./views/Users/Users'));
 // const User = React.lazy(() => import('./views/Users/User'));
 const Product = React.lazy(() => import('./components/product/Product'));
-const ProductAdd = React.lazy(() => import('./components/product/ProductAdd'));
 
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
   { path: '/', exact: true, name: 'Home' },
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
   { path: '/product/shirts', exact: true, name: 'Theme', component: Product },
-  { path: '/product/shirts/add', exact: true, name: 'Theme', component: ProductAdd },
   { path: '/category/category', exact: true, name: 'Theme', component: Category },
   // { path: '/theme/colors', name: 'Colors', component: Colors },
   // { path: '/theme/typography', name: 'Typography', component: Typography },

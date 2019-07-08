@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Table, Button } from 'reactstrap';
-import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import productActions from '../../actions/product.action';
+import ProductAdd from './ProductAdd';
 
 const headers = ['Image', 'Name', 'Catology', 'Status', 'Date Create'];
 
@@ -19,6 +19,7 @@ class Product extends Component {
       idObjEditing: null,
     };
     this.addProduct = this.addProduct.bind(this);
+    this.onBack = this.onBack.bind(this);
   }
 
   componentDidMount() {
@@ -27,6 +28,10 @@ class Product extends Component {
 
   addProduct() {
     this.setState({ isAdd: true });
+  }
+
+  onBack() {
+    this.setState({ isAdd: false });
   }
 
   isImage(value) {
@@ -40,13 +45,8 @@ class Product extends Component {
 
   render() {
     if (this.state.isAdd || this.state.isEdit) {
-      // Assemble path
-      let path = '/product/shirts/add';
-      path += this.state.isEdit ? `/${this.state.idObjEditing}` : '';
-      // Assemble object to
-      const to = { pathname: path };
-      // case editing
-      return <Redirect push to={to} />;
+      const onAccept = this.props.productService.create;
+      return <ProductAdd onAccept={onAccept} onBack={this.onBack} />;
     }
 
     const displayedDatas = this.props.products || [];

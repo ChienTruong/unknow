@@ -13,17 +13,29 @@ const _productsAdd = actionFactory(Actions.PRODUCTS_ADD);
 
 const api = apis.PRODUCT_API;
 
+const headers = {
+  'Content-Type': 'multipart/form-data',
+};
+
+function convertToFormData(data) {
+  const keys = Object.keys(data);
+  const formData = new FormData();
+  keys.forEach(key => formData.set(key, data[key]));
+  return formData;
+}
+
 const productActions = {
   findAll: () => {
     return dispatch => {
-      return axios(api).then(response => {
+      axios.get(api).then(response => {
         dispatch(_products(response.data));
       });
     };
   },
   create: (data) => {
-    return dispatch => {
-      return axios(api, data).then(response => {
+    const _data = convertToFormData(data);
+      return dispatch => {
+      axios.post(api, _data, { headers }).then(response => {
         dispatch(_productsAdd(response.data));
       });
     };
