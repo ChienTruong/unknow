@@ -9,6 +9,7 @@
 		<version>2.0.4.RELEASE</version>
 		<relativePath />
 	</parent>
+    	<packaging>jar</packaging>
 	<groupId>unknow.ui</groupId>
 	<artifactId>unknow</artifactId>
 	<version>0.0.1-SNAPSHOT</version>

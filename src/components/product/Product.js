@@ -3,7 +3,7 @@ import { Table, Button } from 'reactstrap';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import productActions from '../../actions/product.action';
+import productActions, { actFetchProducts } from '../../actions/product.action';
 
 const headers = ['Image', 'Name', 'Catology', 'Status', 'Date Create'];
 
@@ -22,7 +22,8 @@ class Product extends Component {
   }
 
   componentDidMount() {
-    this.props.productService.findAll();
+    // this.props.productService.findAll();
+    this.props.fetchAllProducts();
   }
 
   addProduct() {
@@ -39,6 +40,10 @@ class Product extends Component {
   }
 
   render() {
+
+    console.log(this.props.productAll);
+
+
     if (this.state.isAdd || this.state.isEdit) {
       // Assemble path
       let path = '/product/shirts/add';
@@ -70,6 +75,7 @@ class Product extends Component {
       );
     });
     return (
+
       <div className="container">
         <div className="row margin-top-10">
           <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -101,13 +107,17 @@ Product.defaultProps = {
 
 const mapStateToProps = state => {
   return {
-    products: state.productReducers.data,
+    // products: state.productReducers.data,
+    productAll: state.product
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    productService: bindActionCreators(productActions, dispatch)
+    // productService: bindActionCreators(productActions, dispatch),
+    fetchAllProducts: () => {
+      dispatch(actFetchProducts());
+    }
   };
 };
 
