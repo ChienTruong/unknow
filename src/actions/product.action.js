@@ -8,7 +8,10 @@ function actionFactory(type) {
 }
 
 const _products = actionFactory(Actions.PRODUCTS);
-const _productsAdd = actionFactory(Actions.PRODUCTS_ADD);
+const _productsAdd = actionFactory(Actions.PRODUCTS_CREATE);
+const _productsUpdate = actionFactory(Actions.PRODUCTS_UPDATE);
+const _productsDetail = actionFactory(Actions.PRODUCTS_DETAIL);
+const _productsDelete = actionFactory(Actions.PRODUCTS_DELETE);
 // Handle Action
 
 const api = apis.PRODUCT_API;
@@ -34,9 +37,23 @@ const productActions = {
   },
   create: (data) => {
     const _data = convertToFormData(data);
-      return dispatch => {
+    return dispatch => {
       axios.post(api, _data, { headers }).then(response => {
         dispatch(_productsAdd(response.data));
+      });
+    };
+  },
+  findOne: (id) => {
+    return dispatch => {
+      axios.get(`${api}/${id}`).then(response => {
+        dispatch(_productsDetail(response.data));
+      });
+    };
+  },
+  delete: (id) => {
+    return dispatch => {
+      axios.delete(`${api}/${id}`).then(response => {
+        dispatch(_productsDelete(response.data));
       });
     };
   }

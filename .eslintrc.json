@@ -22,7 +22,6 @@
         "camelcase": "error",
         "semi": "error",
         "quotes": ["error", "single"],
-        "no-case-declarations": "off",
         "no-unused-vars": "off"
     }
 }
