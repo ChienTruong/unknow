@@ -38,9 +38,7 @@ import * as Types from './../constants/actions';
 export const actFetchProducts = () => {
   return (dispatch) => {
     return callApi('list', 'GET', null).then(res => {
-      console.log(res);
-
-      // dispatch(actProductsToStore(res.data));
+      dispatch(actProductsToStore(res.data));
     });
   }
 }
@@ -50,4 +48,21 @@ export const actProductsToStore = (products) => {
      type: Types.ALL_ITEM,
      products
    }
+}
+
+export const actFetchDeleteProduct = (id) => {
+  return dispatch => {
+    return callApi(`${id}`, 'DELETE', null).then(res => {
+      if (res.data.data) {
+        dispatch(actDeleteProduct(id));
+      }
+    })
+  }
+}
+
+export const actDeleteProduct = (id) => {
+  return {
+    type: Types.DELETE_ITEM,
+    id
+  }
 }

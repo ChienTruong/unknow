@@ -1,13 +1,12 @@
 import { combineReducers } from 'redux';
 import productReducers from './product.reducer';
 import postReducers from './post.reducer';
-import product from './product';
+import productAll from './product';
 
 var myReducer = combineReducers({
     productReducers,
     postReducers,
-    product
+    productAll
 });
 
 export default myReducer;
-
