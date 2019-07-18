@@ -43,6 +43,14 @@ const productActions = {
       });
     };
   },
+  update: (id, data) => {
+    const _data = convertToFormData(data);
+    return dispatch => {
+      axios.put(`${api}/${id}`, _data, { headers }).then(response => {
+        dispatch(_productsUpdate(response.data));
+      });
+    };
+  },
   findOne: (id) => {
     return dispatch => {
       axios.get(`${api}/${id}`).then(response => {

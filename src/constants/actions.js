@@ -1,4 +1,4 @@
-const Actions = {
+const Actions = Object.freeze({
     // Products
     PRODUCTS: 'PRODUCTS',
     PRODUCTS_CREATE: 'PRODUCTS_CREATE',
@@ -10,6 +10,6 @@ const Actions = {
     DELETE_POST : 'DELETE_POST',
     EDIT_POST : 'EDIT_POST',
     UPDATE_POST : 'UPDATE_POST'
-};
+});
 
 export default Actions;

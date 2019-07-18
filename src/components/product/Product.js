@@ -45,7 +45,8 @@ class Product extends Component {
 
   render() {
     if (this.state.isAdd || this.state.isEdit) {
-      const onAccept = this.props.productService.create;
+      const onAccept = this.state.isEdit ? this.props.productService.update
+        : this.props.productService.create;
       return <ProductAdd onAccept={onAccept} onBack={this.onBack} />;
     }
 
