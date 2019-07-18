@@ -14,8 +14,8 @@ export default function (previousState = {}, action) {
         }
         case Actions.PRODUCTS_DETAIL: {
             // todo
-            const data = action.payload;
-            return Object.assign({}, previousState, action.payload, { data });
+            const detail = action.payload;
+            return Object.assign({}, previousState, action.payload, { detail });
         }
         case Actions.PRODUCTS_DELETE:
             // todo

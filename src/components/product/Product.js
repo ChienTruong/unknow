@@ -20,6 +20,8 @@ class Product extends Component {
     };
     this.addProduct = this.addProduct.bind(this);
     this.onBack = this.onBack.bind(this);
+    this.onDelete = this.onDelete.bind(this);
+    this.onEdit = this.onEdit.bind(this);
   }
 
   componentDidMount() {
@@ -34,6 +36,14 @@ class Product extends Component {
     this.setState({ isAdd: false });
   }
 
+  onDelete(id) {
+    this.props.productService.delete(id);
+  }
+
+  onEdit(id) {
+    this.props.productService.findOne(id);
+  }
+
   isImage(value) {
     // Temporary implement
     if (typeof value === 'string'
@@ -45,8 +55,8 @@ class Product extends Component {
 
   render() {
     if (this.state.isAdd || this.state.isEdit) {
-      const onAccept = this.state.isEdit ? this.props.productService.update
-        : this.props.productService.create;
+      const onAccept = this.state.isEdit ? 
+        this.props.productService.update : this.props.productService.create;
       return <ProductAdd onAccept={onAccept} onBack={this.onBack} />;
     }
 
@@ -67,6 +77,10 @@ class Product extends Component {
       return (
         <tr key={ele.id}>
           {contents}
+          <td>
+            <Button color='success' onClick={() => this.onEdit(ele.id)}>Edit</Button>
+            <Button color='danger' onClick={() => this.onDelete(ele.id)}>Delete</Button>
+          </td>
         </tr>
       );
     });
@@ -98,11 +112,13 @@ class Product extends Component {
 
 Product.defaultProps = {
   products: [],
+  product: {},
 };
 
 const mapStateToProps = state => {
   return {
     products: state.productReducers.data,
+    product: state.productReducers.detail,
   };
 };
 
