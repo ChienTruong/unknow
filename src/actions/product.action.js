@@ -30,7 +30,7 @@ function convertToFormData(data) {
 const productActions = {
   findAll: () => {
     return dispatch => {
-      axios.get(api).then(response => {
+      return axios.get(api).then(response => {
         dispatch(_products(response.data));
       });
     };
@@ -38,7 +38,7 @@ const productActions = {
   create: (data) => {
     const _data = convertToFormData(data);
     return dispatch => {
-      axios.post(api, _data, { headers }).then(response => {
+      return axios.post(api, _data, { headers }).then(response => {
         dispatch(_productsAdd(response.data));
       });
     };
@@ -46,21 +46,21 @@ const productActions = {
   update: (id, data) => {
     const _data = convertToFormData(data);
     return dispatch => {
-      axios.put(`${api}/${id}`, _data, { headers }).then(response => {
+      return axios.put(`${api}/${id}`, _data, { headers }).then(response => {
         dispatch(_productsUpdate(response.data));
       });
     };
   },
   findOne: (id) => {
     return dispatch => {
-      axios.get(`${api}/${id}`).then(response => {
+      return axios.get(`${api}/${id}`).then(response => {
         dispatch(_productsDetail(response.data));
       });
     };
   },
   delete: (id) => {
     return dispatch => {
-      axios.delete(`${api}/${id}`).then(response => {
+      return axios.delete(`${api}/${id}`).then(response => {
         dispatch(_productsDelete(response.data));
       });
     };
