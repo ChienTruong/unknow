@@ -11,15 +11,15 @@ export default {
     },
     {
       name: 'Product',
-      // url: '/product',
+      url: '/product',
       icon: 'fa fa-product-hunt',
-      children: [
-        {
-          name: 'List Product',
-          url: '/product/shirts',
-          icon: 'fa fa-tint',
-        },
-      ],
+      // children: [
+      //   {
+      //     name: 'List Product',
+      //     url: '/product/shirts',
+      //     icon: 'fa fa-tint',
+      //   },
+      // ],
     },
     {
       name: 'Category',
