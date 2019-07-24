@@ -46,7 +46,7 @@ const routes = [
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
   { path: '/product', exact: true, name: 'Theme', component: Product },
   { path: '/product/create', exact: true, name: 'Theme', component: ProductAdd },
-  { path: '/product/{id}', exact: true, name: 'Theme', component: ProductEdit },
+  { path: '/product/:id', exact: true, name: 'Theme', component: ProductEdit },
   { path: '/category/category', exact: true, name: 'Theme', component: Category },
   // { path: '/theme/colors', name: 'Colors', component: Colors },
   // { path: '/theme/typography', name: 'Typography', component: Typography },

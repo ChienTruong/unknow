@@ -36,11 +36,11 @@ export default class ProductAdd extends Component {
   }
 
   onSave() {
-    this.props.onAccept(this.state);
+    // this.props.onAccept(this.state);
   }
 
   onBack() {
-    this.props.onBack();
+    // this.props.onBack();
   }
 
   render() {

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import productActions from '../../actions/product.action';
 import ProductAdd from './ProductAdd';
+import { Redirect } from 'react-router-dom';
 
 const headers = ['Image', 'Name', 'Catology', 'Status', 'Date Create'];
 
@@ -55,9 +56,16 @@ class Product extends Component {
 
   render() {
     if (this.state.isAdd || this.state.isEdit) {
-      const onAccept = this.state.isEdit ? 
-        this.props.productService.update : this.props.productService.create;
-      return <ProductAdd onAccept={onAccept} onBack={this.onBack} />;
+      // const onAccept = this.state.isEdit ? 
+      //   this.props.productService.update : this.props.productService.create;
+      const pathName = this.state.isAdd ? '/product/create' : `/product/${this.state.idObjEditing}`;
+      const to = {
+        pathname: pathName,
+        state: {
+          
+        }
+      };
+      return <Redirect to={to} />;
     }
 
     const displayedDatas = this.props.products || [];
