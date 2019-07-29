@@ -5,7 +5,6 @@ import postReducers from './post.reducer';
 var myReducer = combineReducers({
     productReducers,
     postReducers
-
 });
 
 export default myReducer;

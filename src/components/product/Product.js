@@ -3,7 +3,6 @@ import { Table, Button } from 'reactstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import productActions from '../../actions/product.action';
-import ProductAdd from './ProductAdd';
 import { Redirect } from 'react-router-dom';
 
 const headers = ['Image', 'Name', 'Catology', 'Status', 'Date Create'];
@@ -20,7 +19,6 @@ class Product extends Component {
       idObjEditing: null,
     };
     this.addProduct = this.addProduct.bind(this);
-    this.onBack = this.onBack.bind(this);
     this.onDelete = this.onDelete.bind(this);
     this.onEdit = this.onEdit.bind(this);
   }
@@ -30,11 +28,7 @@ class Product extends Component {
   }
 
   addProduct() {
-    this.setState({ isAdd: true });
-  }
-
-  onBack() {
-    this.setState({ isAdd: false });
+    this.setState({ isAdd: true, isEdit: false });
   }
 
   onDelete(id) {
@@ -42,7 +36,12 @@ class Product extends Component {
   }
 
   onEdit(id) {
-    this.props.productService.findOne(id);
+    this.setState({
+      isAdd: false,
+      isEdit: true,
+      idObjEditing: id,
+    });
+    // this.props.productService.findOne(id);
   }
 
   isImage(value) {
@@ -62,7 +61,7 @@ class Product extends Component {
       const to = {
         pathname: pathName,
         state: {
-          
+
         }
       };
       return <Redirect to={to} />;
@@ -120,13 +119,11 @@ class Product extends Component {
 
 Product.defaultProps = {
   products: [],
-  product: {},
 };
 
 const mapStateToProps = state => {
   return {
     products: state.productReducers.data,
-    product: state.productReducers.detail,
   };
 };
 
