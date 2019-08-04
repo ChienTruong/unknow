@@ -8,6 +8,7 @@ import { Redirect } from 'react-router-dom';
 const headers = ['Image', 'Name', 'Catology', 'Status', 'Date Create'];
 
 const fields = ['code', 'name', 'imageUrl', 'price'];
+
 class Product extends Component {
 
   constructor(props) {
@@ -129,7 +130,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    productService: bindActionCreators(productActions, dispatch)
+    productService: bindActionCreators(productActions, dispatch),
   };
 };
 

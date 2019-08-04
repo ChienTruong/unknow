@@ -1,6 +1,6 @@
 import Actions from '../constants/actions';
 import apis from '../constants/api';
-import axios from 'axios';
+import httpClient from '../common/httpClient';
 // Action Creator
 
 function actionFactory(type) {
@@ -30,7 +30,7 @@ function convertToFormData(data) {
 const productActions = {
   findAll: () => {
     return dispatch => {
-      return axios.get(api).then(response => {
+      return httpClient.get(api).then(response => {
         dispatch(_products(response.data));
       });
     };
@@ -38,7 +38,7 @@ const productActions = {
   create: (data) => {
     const _data = convertToFormData(data);
     return dispatch => {
-      return axios.post(api, _data, { headers }).then(response => {
+      return httpClient.post(api, _data, { headers }).then(response => {
         dispatch(_productsAdd(response.data));
       });
     };
@@ -46,21 +46,21 @@ const productActions = {
   update: (id, data) => {
     const _data = convertToFormData(data);
     return dispatch => {
-      return axios.put(`${api}/${id}`, _data, { headers }).then(response => {
+      return httpClient.put(`${api}/${id}`, _data, { headers }).then(response => {
         dispatch(_productsUpdate(response.data));
       });
     };
   },
   findOne: (id) => {
     return dispatch => {
-      return axios.get(`${api}/${id}`).then(response => {
+      return httpClient.get(`${api}/${id}`).then(response => {
         dispatch(_productsDetail(response.data));
       });
     };
   },
   delete: (id) => {
     return dispatch => {
-      return axios.delete(`${api}/${id}`).then(response => {
+      return httpClient.delete(`${api}/${id}`).then(response => {
         dispatch(_productsDelete(response.data));
       });
     };
