@@ -11,6 +11,7 @@
 // };
 export const ALL_ITEM = 'ALL_ITEM';
 export const DELETE_ITEM = 'DELETE_ITEM';
+export const ADD_ITEM = 'ADD_ITEM';
 
 // export default Actions;
 // export const ADD_POST = 'ADD_POST';

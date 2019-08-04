@@ -66,3 +66,21 @@ export const actDeleteProduct = (id) => {
     id
   }
 }
+
+export const actAddProductRequest = (product) => {
+  return dispatch => {
+    const data = new FormData()
+    data.append('file', product.file);
+    data.append('product', JSON.stringify(product.product));
+    return callApi('', 'POST', data).then(res => {
+      dispatch(actAddProduct(res.data))
+    })
+  }
+}
+
+export const actAddProduct = (product) => {
+  return {
+    type: Types.ADD_ITEM,
+    product
+  }
+}
