@@ -11,13 +11,25 @@ export default {
     },
     {
       name: 'Product',
-      // url: '/product',
-      icon: 'cui-cloud',
+      url: '/product',
+      icon: 'fa fa-product-hunt',
+      // children: [
+      //   {
+      //     name: 'List Product',
+      //     url: '/product/shirts',
+      //     icon: 'fa fa-tint',
+      //   },
+      // ],
+    },
+    {
+      name: 'Category',
+      url: '/category',
+      icon: 'fa fa-product-hunt',
       children: [
         {
-          name: 'Shirt',
-          url: '/product/shirts',
-          icon: 'icon-puzzle',
+          name: 'List Category',
+          url: '/category/category',
+          icon: 'fa fa-tint',
         },
       ],
     },
@@ -118,11 +130,11 @@ export default {
     //       url: '/base/switches',
     //       icon: 'icon-puzzle',
     //     },
-    //     {
-    //       name: 'Tables',
-    //       url: '/base/tables',
-    //       icon: 'icon-puzzle',
-    //     },
+        {
+          name: 'Tables',
+          url: '/base/tables',
+          icon: 'icon-puzzle',
+        },
     //     {
     //       name: 'Tabs',
     //       url: '/base/tabs',

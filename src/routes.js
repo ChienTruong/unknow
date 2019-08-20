@@ -1,4 +1,5 @@
 import React from 'react';
+import Category from './components/category/category';
 
 // const Breadcrumbs = React.lazy(() => import('./views/Base/Breadcrumbs'));
 // const Cards = React.lazy(() => import('./views/Base/Cards'));
@@ -14,7 +15,7 @@ import React from 'react';
 // const Popovers = React.lazy(() => import('./views/Base/Popovers'));
 // const ProgressBar = React.lazy(() => import('./views/Base/ProgressBar'));
 // const Switches = React.lazy(() => import('./views/Base/Switches'));
-// const Tables = React.lazy(() => import('./views/Base/Tables'));
+const Tables = React.lazy(() => import('./views/Base/Tables'));
 // const Tabs = React.lazy(() => import('./views/Base/Tabs'));
 // const Tooltips = React.lazy(() => import('./views/Base/Tooltips'));
 // const BrandButtons = React.lazy(() => import('./views/Buttons/BrandButtons'));
@@ -35,20 +36,25 @@ const SimpleLineIcons = React.lazy(() => import('./views/Icons/SimpleLineIcons')
 // const Widgets = React.lazy(() => import('./views/Widgets/Widgets'));
 // const Users = React.lazy(() => import('./views/Users/Users'));
 // const User = React.lazy(() => import('./views/Users/User'));
-const Product = React.lazy(() => import('./components/products/product/Product'));
+const Product = React.lazy(() => import('./components/product/Product'));
+const ProductAdd = React.lazy(() => import('./components/product/ProductAdd'));
+const ProductEdit = React.lazy(() => import('./components/product/ProductEdit'));
 
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
   { path: '/', exact: true, name: 'Home' },
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
-  { path: '/product/shirts', exact: true, name: 'Theme', component: Product },
+  { path: '/product', exact: true, name: 'Theme', component: Product },
+  { path: '/product/create', exact: true, name: 'Theme', component: ProductAdd },
+  { path: '/product/:id', exact: true, name: 'Theme', component: ProductEdit },
+  { path: '/category/category', exact: true, name: 'Theme', component: Category },
   // { path: '/theme/colors', name: 'Colors', component: Colors },
   // { path: '/theme/typography', name: 'Typography', component: Typography },
   // { path: '/base', exact: true, name: 'Base', component: Cards },
   // { path: '/base/cards', name: 'Cards', component: Cards },
   // { path: '/base/forms', name: 'Forms', component: Forms },
   // { path: '/base/switches', name: 'Switches', component: Switches },
-  // { path: '/base/tables', name: 'Tables', component: Tables },
+  { path: '/base/tables', name: 'Tables', component: Tables },
   // { path: '/base/tabs', name: 'Tabs', component: Tabs },
   // { path: '/base/breadcrumbs', name: 'Breadcrumbs', component: Breadcrumbs },
   // { path: '/base/carousels', name: 'Carousel', component: Carousels },

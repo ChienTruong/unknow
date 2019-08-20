@@ -1,0 +1,15 @@
+const Actions = Object.freeze({
+    // Products
+    PRODUCTS: 'PRODUCTS',
+    PRODUCTS_CREATE: 'PRODUCTS_CREATE',
+    PRODCUTS_UPDATE: 'PRODUCTS_UPDATE',
+    PRODUCTS_DETAIL: 'PRODUCTS_DETAIL',
+    PRODUCTS_DELETE: 'PRODUCTS_DELETE',
+    // ...
+    ADD_POST : 'ADD_POST',
+    DELETE_POST : 'DELETE_POST',
+    EDIT_POST : 'EDIT_POST',
+    UPDATE_POST : 'UPDATE_POST'
+});
+
+export default Actions;
